@@ -1,0 +1,10 @@
+// Code signing for every target. Leave DEVELOPMENT_TEAM empty here.
+// To sign with your own team, copy Signing.local.xcconfig.example to
+// Signing.local.xcconfig (which git ignores) and set your Apple team ID there.
+// Without that local file the app is signed ad hoc ("Sign to Run Locally"),
+// which builds and runs, but macOS asks for the Accessibility permission again
+// after each rebuild, because it ties that permission to the app's signature.
+DEVELOPMENT_TEAM =
+CODE_SIGN_IDENTITY = -
+
+#include? "Signing.local.xcconfig"

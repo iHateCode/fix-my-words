@@ -1,0 +1,5 @@
+// Copy this file to Signing.local.xcconfig (git ignores that name)
+// and replace YOUR_TEAM_ID with your Apple Developer team ID.
+// A free personal team works for building and running on your own Mac.
+DEVELOPMENT_TEAM = YOUR_TEAM_ID
+CODE_SIGN_IDENTITY = Apple Development

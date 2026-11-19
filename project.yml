@@ -1,0 +1,97 @@
+# Generates FixMyWords.xcodeproj. Run `xcodegen generate` after changing this file.
+name: FixMyWords
+options:
+  bundleIdPrefix: com.ihatecode
+  deploymentTarget:
+    macOS: "26.0"
+  createIntermediateGroups: true
+
+# The signing team lives in Config/Signing.local.xcconfig, which git ignores.
+# See Config/Signing.local.xcconfig.example.
+configFiles:
+  Debug: Config/Signing.xcconfig
+  Release: Config/Signing.xcconfig
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    MACOSX_DEPLOYMENT_TARGET: "26.0"
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_HARDENED_RUNTIME: YES
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+
+packages:
+  FixMyWordsCore:
+    path: Packages/FixMyWordsCore
+  KeyboardShortcuts:                # also a dependency of the core package; the app uses it for hotkey names and recorders
+    url: https://github.com/sindresorhus/KeyboardShortcuts
+    from: 3.1.0
+
+targets:
+  FixMyWords:
+    type: application
+    platform: macOS
+    sources:
+      - path: FixMyWords
+        excludes: [Info.plist]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ihatecode.FixMyWords
+        PRODUCT_NAME: FixMyWords
+        INFOPLIST_FILE: FixMyWords/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        # No App Sandbox: it would block reading and pasting in other apps (see docs/adr/0001-no-sandbox-direct-distribution.md).
+        ENABLE_APP_SANDBOX: NO
+    dependencies:
+      - package: FixMyWordsCore
+      - package: KeyboardShortcuts
+
+  TestPad:
+    type: application
+    platform: macOS
+    sources: [TestPad]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ihatecode.FixMyWords.TestPad
+        PRODUCT_NAME: TestPad
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSPrincipalClass: NSApplication
+        ENABLE_APP_SANDBOX: NO
+
+  FixMyWordsUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources: [FixMyWordsUITests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ihatecode.FixMyWords.UITests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: FixMyWords
+        # The runner is sandboxed; StubOpenRouter has to listen on 127.0.0.1.
+        CODE_SIGN_ENTITLEMENTS: FixMyWordsUITests/FixMyWordsUITests.entitlements
+    dependencies:
+      - target: FixMyWords
+      - target: TestPad
+
+schemes:
+  FixMyWords:
+    build:
+      targets:
+        FixMyWords: all
+        TestPad: [test]
+        FixMyWordsUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [FixMyWordsUITests]
+    archive:
+      config: Release
+  TestPad:
+    build:
+      targets:
+        TestPad: all
+    run:
+      config: Debug

@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/icon-256.png" width="128" height="128" alt="Fix My Words app icon: a page with one highlighted word and a swap badge"></p>
+
 # Fix My Words
 
 **Fix your writing in other Mac apps with one shortcut.**

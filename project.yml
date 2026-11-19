@@ -42,6 +42,8 @@ targets:
         PRODUCT_NAME: FixMyWords
         INFOPLIST_FILE: FixMyWords/Info.plist
         GENERATE_INFOPLIST_FILE: NO
+        # The icon lives in FixMyWords/Assets.xcassets (a source of this target).
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         # No App Sandbox: it would block reading and pasting in other apps (see docs/adr/0001-no-sandbox-direct-distribution.md).
         ENABLE_APP_SANDBOX: NO
     dependencies:

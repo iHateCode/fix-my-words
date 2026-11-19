@@ -1,5 +1,7 @@
 #!/bin/sh
 # Renders the app-icon SVGs into the AppIcon set and docs/images/icon-256.png,
+# the menu-bar symbol SVGs into the MenuBarIcon set (the 1x PNG from the
+# hand-tuned menubar-icon-1x.svg, the 2x PNG from menubar-icon.svg),
 # and social-preview.html into docs/images/social-preview.png.
 # Usage: sh docs/images/icon/render-icon.sh <path to a Chrome or chrome-headless-shell binary>
 # Run from the repo root after `node docs/images/icon/gen-icon.mjs`.
@@ -7,6 +9,7 @@ set -eu
 CHROME=$1
 ICON=docs/images/icon
 SET=FixMyWords/Assets.xcassets/AppIcon.appiconset
+BAR=FixMyWords/Assets.xcassets/MenuBarIcon.imageset
 WORK=$(mktemp -d)
 
 # render <svg> <px> <out.png>
@@ -28,6 +31,10 @@ render $ICON/app-icon.svg    512  $SET/icon_256x256@2x.png
 render $ICON/app-icon.svg    512  $SET/icon_512x512.png
 render $ICON/app-icon.svg    1024 $SET/icon_512x512@2x.png
 render $ICON/app-icon.svg    256  docs/images/icon-256.png
+
+# The menu-bar symbol, a template image.
+render $ICON/menubar-icon-1x.svg 18 $BAR/menubar-icon.png
+render $ICON/menubar-icon.svg    36 $BAR/menubar-icon@2x.png
 
 # The link-preview image, 1280x640.
 "$CHROME" --headless --disable-gpu --hide-scrollbars --window-size=1280,640 \

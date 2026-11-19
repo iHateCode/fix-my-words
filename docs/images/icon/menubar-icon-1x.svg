@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="18" height="18">
+  <!-- Menu-bar symbol, hand-tuned for 1x (18 px, template image). Same look as menubar-icon.svg, drawn on the
+       pixel grid: 1 px page outline, a bigger badge, and swap arrows cut out as whole pixels so they survive
+       on a non-Retina screen. Black on transparent; holes are even-odd fills. -->
+  <path d="M7 15.5 H4 Q2.5 15.5 2.5 14 V3 Q2.5 1.5 4 1.5 H10 Q11.5 1.5 11.5 3 V7"
+        fill="none" stroke="#000" stroke-width="1"/>
+  <rect x="4" y="4" width="6" height="2" fill="#000"/>
+  <rect x="4" y="8" width="4" height="1" fill="#000"/>
+  <path fill="#000" fill-rule="evenodd"
+        d="M13 8 A5 5 0 1 1 13 18 A5 5 0 1 1 13 8 Z
+           M10 11 H14 V10 H15 V11 H16 V12 H15 V13 H14 V12 H10 Z
+           M16 14 H12 V13 H11 V14 H10 V15 H11 V16 H12 V15 H16 Z"/>
+</svg>

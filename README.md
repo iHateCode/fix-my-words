@@ -53,7 +53,7 @@ You need:
 ## First run
 
 1. **Accessibility permission.** Fix My Words reads your selection and pastes the result through macOS Accessibility. On first launch, a window explains this. Click **Open System Settings** and turn on Fix My Words under Privacy & Security → Accessibility. The window closes itself once the permission is granted. No other permission is needed.
-2. **OpenRouter key.** Click the Fix My Words symbol in the menu bar (lines of text with a checkmark), choose Settings…, open the AI tab, paste your key, click Save, then click Test key.
+2. **OpenRouter key.** Click the Fix My Words symbol in the menu bar (a small page with a round swap badge), choose Settings…, open the AI tab, paste your key, click Save, then click Test key.
 3. **Models.** On the same tab, pick a main model and a backup model.
 4. **Start at login.** The Release build from [Build from source](#build-from-source) adds itself as a login item on first launch. Turn this off in Settings → General → Start at login.
 
@@ -94,7 +94,7 @@ You need Xcode 27 or later (tested with 27.2) and [XcodeGen](https://github.com/
    open build/Build/Products/Release/FixMyWords.app
    ```
 
-   The app has no Dock icon: look for its symbol in the menu bar, lines of text with a checkmark. On first launch, the Release build adds itself as a login item; turn this off in Settings → General → Start at login.
+   The app has no Dock icon: look for its symbol in the menu bar, a small page with a round swap badge. On first launch, the Release build adds itself as a login item; turn this off in Settings → General → Start at login.
 
    This works with no Apple account: the app is signed ad hoc. The catch is that macOS then asks for the Accessibility permission again after each rebuild.
 
